@@ -16,11 +16,9 @@
 
 package com.karumi.maxibonkata;
 
-import com.pholser.junit.quickcheck.ForAll;
 import com.pholser.junit.quickcheck.From;
 import com.pholser.junit.quickcheck.Property;
 import com.pholser.junit.quickcheck.runner.JUnitQuickcheck;
-import java.util.LinkedList;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
@@ -78,11 +76,33 @@ import static org.mockito.Mockito.verify;
         "Hi guys, I'm " + developer.getName() + ". We need more maxibons!");
   }
 
-  @Property public void ifSomeKarumiesGoToTheKitchenTheNumberOfMaxibonsCanNotBeLowerThanTwo
-      (List<@From(KarumiesGenerator.class) Developer> developers) {
+  @Property public void ifSomeKarumiesGoToTheKitchenTheNumberOfMaxibonsCanNotBeLowerThanTwo(
+      List<@From(KarumiesGenerator.class) Developer> developers) {
+    karumiHQs.openFridge(developers);
+    assertTrue(karumiHQs.getMaxibonsLeft() > 2);
+  }
+
+  @Property public void ifSomeKarumiesGoToTheKitchenTheNumberOfMaxibonsShouldBeTheExpectedOne(
+      List<@From(KarumiesGenerator.class) Developer> developers) {
+    int initialMaxibons = karumiHQs.getMaxibonsLeft();
     karumiHQs.openFridge(developers);
 
-    assertTrue(karumiHQs.getMaxibonsLeft() > 2);
+    int expectedMaxibons = calculateMaxibonsLeft(initialMaxibons, developers);
+    assertEquals(expectedMaxibons, karumiHQs.getMaxibonsLeft());
+  }
+
+  private int calculateMaxibonsLeft(int initialMaxibons, List<Developer> developers) {
+    int maxibonsLeft = initialMaxibons;
+    for (Developer developer : developers) {
+      maxibonsLeft -= developer.getNumberOfMaxibonsToGrab();
+      if (maxibonsLeft < 0) {
+        maxibonsLeft = 0;
+      }
+      if (maxibonsLeft <= 2) {
+        maxibonsLeft += 10;
+      }
+    }
+    return maxibonsLeft;
   }
 
   private int getMaxibonsAfterOpeningTheFridge(int initialMaxibons, int numberOfMaxibonsToGrab) {
