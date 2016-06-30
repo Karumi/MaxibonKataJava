@@ -16,9 +16,12 @@
 
 package com.karumi.maxibonkata;
 
+import com.pholser.junit.quickcheck.ForAll;
 import com.pholser.junit.quickcheck.From;
 import com.pholser.junit.quickcheck.Property;
 import com.pholser.junit.quickcheck.runner.JUnitQuickcheck;
+import java.util.LinkedList;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -73,6 +76,13 @@ import static org.mockito.Mockito.verify;
 
     verify(chat, never()).sendMessage(
         "Hi guys, I'm " + developer.getName() + ". We need more maxibons!");
+  }
+
+  @Property public void ifSomeKarumiesGoToTheKitchenTheNumberOfMaxibonsCanNotBeLowerThanTwo
+      (List<@From(KarumiesGenerator.class) Developer> developers) {
+    karumiHQs.openFridge(developers);
+
+    assertTrue(karumiHQs.getMaxibonsLeft() > 2);
   }
 
   private int getMaxibonsAfterOpeningTheFridge(int initialMaxibons, int numberOfMaxibonsToGrab) {

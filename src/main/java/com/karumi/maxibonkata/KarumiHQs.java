@@ -16,6 +16,9 @@
 
 package com.karumi.maxibonkata;
 
+import java.util.Collections;
+import java.util.List;
+
 public class KarumiHQs {
 
   private final Chat chat;
@@ -32,10 +35,16 @@ public class KarumiHQs {
   }
 
   public void openFridge(Developer developer) {
-    grabMaxibons(developer);
-    if (shouldBuyMoreMaxibons()) {
-      notifyWeShouldByMaxibon(developer);
-      buyMaxibons();
+    openFridge(Collections.singletonList(developer));
+  }
+
+  public void openFridge(List<Developer> developers) {
+    for (Developer developer : developers) {
+      grabMaxibons(developer);
+      if (shouldBuyMoreMaxibons()) {
+        notifyWeShouldByMaxibon(developer);
+        buyMaxibons();
+      }
     }
   }
 
