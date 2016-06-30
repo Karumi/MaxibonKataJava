@@ -26,6 +26,7 @@ import org.junit.runner.RunWith;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 @RunWith(JUnitQuickcheck.class) public class KarumiHQsProperties {
@@ -54,15 +55,24 @@ import static org.mockito.Mockito.verify;
     int initialMaxibons = karumiHQs.getMaxibonsLeft();
     karumiHQs.openFridge(developer);
 
-    int expectedMaxibons = getMaxibonsAfterOpeningTheFridge(initialMaxibons , developer.getNumberOfMaxibonsToGrab());
+    int expectedMaxibons =
+        getMaxibonsAfterOpeningTheFridge(initialMaxibons, developer.getNumberOfMaxibonsToGrab());
     assertEquals(expectedMaxibons, karumiHQs.getMaxibonsLeft());
   }
 
-  @Property public void ifThereAreLessThanTwoMaxiobonLeftAMessageIsSentRequestingMore(
+  @Property public void ifThereAreLessThanTwoMaxiobonsLeftAMessageIsSentRequestingMore(
       @From(HungryDevelopersGenerator.class) Developer developer) {
     karumiHQs.openFridge(developer);
 
     verify(chat).sendMessage("Hi guys, I'm " + developer.getName() + ". We need more maxibons!");
+  }
+
+  @Property public void ifThereAreMoreThanTwoMaxiobonsLeftNoMessagesAreSentOrderingMore(
+      @From(NotSoHungryDevelopersGenerator.class) Developer developer) {
+    karumiHQs.openFridge(developer);
+
+    verify(chat, never()).sendMessage(
+        "Hi guys, I'm " + developer.getName() + ". We need more maxibons!");
   }
 
   private int getMaxibonsAfterOpeningTheFridge(int initialMaxibons, int numberOfMaxibonsToGrab) {
