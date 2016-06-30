@@ -11,6 +11,7 @@ repositories {
 }
 
 dependencies {
+    testCompile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.21'
     testCompile group: 'com.pholser', name: 'junit-quickcheck-core', version: '0.6'
     testCompile group: 'com.pholser', name: 'junit-quickcheck-generators', version: '0.6'
 }
