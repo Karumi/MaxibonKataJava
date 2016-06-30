@@ -38,9 +38,9 @@ class Developer {
   }
 
   @Override public String toString() {
-    return "Developer{" +
-        "name='" + name + '\'' +
-        ", numberOfMaxibonsToGrab=" + numberOfMaxibonsToGrab +
-        '}';
+    return "Developer{"
+        + "name='" + name + '\''
+        + ", numberOfMaxibonsToGrab=" + numberOfMaxibonsToGrab
+        + '}';
   }
 }
