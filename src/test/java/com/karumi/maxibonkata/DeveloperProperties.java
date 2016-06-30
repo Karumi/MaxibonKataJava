@@ -27,10 +27,18 @@ import static junit.framework.TestCase.assertEquals;
 @RunWith(JUnitQuickcheck.class) public class DeveloperProperties {
 
   private static final String ANY_NAME = "Pedro";
+  private static final int ANY_NUMBER_OF_MAXIBONS = 1;
 
   @Property public void theNumberOfMaxibonsAssignedIsPositiveOrZero(int numberOfMaxibons) {
+    System.out.println("Trying with number of maxibons " + numberOfMaxibons);
     Developer developer = new Developer(ANY_NAME, numberOfMaxibons);
     assertTrue(developer.getNumberOfMaxibonsToGrab() >= 0);
+  }
+
+  @Property public void theNameIsAssignedInConstruction(String name) {
+    System.out.println("Trying with name " + name);
+    Developer developer = new Developer(name, ANY_NUMBER_OF_MAXIBONS);
+    assertEquals(name, developer.getName());
   }
 
   @Test public void theNumberOfMaxibonsAssociatedToEveryKarumieIsAlreadyAssigned() {
