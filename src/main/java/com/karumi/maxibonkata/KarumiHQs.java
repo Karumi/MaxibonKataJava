@@ -18,20 +18,44 @@ package com.karumi.maxibonkata;
 
 public class KarumiHQs {
 
+  private final Chat chat;
+
   private int maxibonsLeft;
 
   public KarumiHQs() {
+    this(new ConsoleChat());
+  }
+
+  public KarumiHQs(Chat chat) {
+    this.chat = chat;
     this.maxibonsLeft = 10;
   }
 
   public void openFridge(Developer developer) {
+    grabMaxibons(developer);
+    if (shouldBuyMoreMaxibons()) {
+      notifyWeShouldByMaxibon(developer);
+      buyMaxibons();
+    }
+  }
+
+  private void grabMaxibons(Developer developer) {
     maxibonsLeft -= developer.getNumberOfMaxibonsToGrab();
     if (maxibonsLeft < 0) {
       maxibonsLeft = 0;
     }
-    if (maxibonsLeft < 2) {
-      maxibonsLeft += 10;
-    }
+  }
+
+  private boolean shouldBuyMoreMaxibons() {
+    return maxibonsLeft <= 2;
+  }
+
+  private void notifyWeShouldByMaxibon(Developer developer) {
+    chat.sendMessage("Hi guys, I'm " + developer.getName() + ". We need more maxibons!");
+  }
+
+  private void buyMaxibons() {
+    maxibonsLeft += 10;
   }
 
   public int getMaxibonsLeft() {

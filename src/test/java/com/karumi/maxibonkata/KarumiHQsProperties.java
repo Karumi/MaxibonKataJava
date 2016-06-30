@@ -25,23 +25,56 @@ import org.junit.runner.RunWith;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 @RunWith(JUnitQuickcheck.class) public class KarumiHQsProperties {
 
   private KarumiHQs karumiHQs;
+  private Chat chat;
 
   @Before public void setUp() {
-    karumiHQs = new KarumiHQs();
+    chat = mock(Chat.class);
+    karumiHQs = new KarumiHQs(chat);
   }
 
   @Test public void theNumberOfInitialMaxibonsAreTen() {
     assertEquals(10, karumiHQs.getMaxibonsLeft());
   }
 
-  @Property public void theNumberOfMaxibonsCanNeverBeLowerThanTwo(@From(DevelopersGenerator.class) Developer developer) {
+  @Property public void theNumberOfMaxibonsCanNeverBeLowerThanTwo(
+      @From(DevelopersGenerator.class) Developer developer) {
     karumiHQs.openFridge(developer);
 
     assertTrue(karumiHQs.getMaxibonsLeft() > 2);
+  }
+
+  @Property public void ifThereAreLessThanTwoMaxiobonLeft10MaxibonsAreAutomaticallyBought(
+      @From(HungryDevelopersGenerator.class) Developer developer) {
+    int initialMaxibons = karumiHQs.getMaxibonsLeft();
+    karumiHQs.openFridge(developer);
+
+    int expectedMaxibons = getMaxibonsAfterOpeningTheFridge(initialMaxibons , developer.getNumberOfMaxibonsToGrab());
+    assertEquals(expectedMaxibons, karumiHQs.getMaxibonsLeft());
+  }
+
+  @Property public void ifThereAreLessThanTwoMaxiobonLeftAMessageIsSentRequestingMore(
+      @From(HungryDevelopersGenerator.class) Developer developer) {
+    karumiHQs.openFridge(developer);
+
+    verify(chat).sendMessage("Hi guys, I'm " + developer.getName() + ". We need more maxibons!");
+  }
+
+  private int getMaxibonsAfterOpeningTheFridge(int initialMaxibons, int numberOfMaxibonsToGrab) {
+    int maxibonsLeft = initialMaxibons;
+    maxibonsLeft -= numberOfMaxibonsToGrab;
+    if (maxibonsLeft < 0) {
+      maxibonsLeft = 0;
+    }
+    if (maxibonsLeft <= 2) {
+      maxibonsLeft += 10;
+    }
+    return maxibonsLeft;
   }
 }
 
