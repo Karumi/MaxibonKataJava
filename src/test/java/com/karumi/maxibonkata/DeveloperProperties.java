@@ -18,12 +18,13 @@ package com.karumi.maxibonkata;
 
 import com.pholser.junit.quickcheck.Property;
 import com.pholser.junit.quickcheck.runner.JUnitQuickcheck;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static junit.framework.Assert.assertTrue;
+import static junit.framework.TestCase.assertEquals;
 
-@RunWith(JUnitQuickcheck.class)
-public class DeveloperProperties {
+@RunWith(JUnitQuickcheck.class) public class DeveloperProperties {
 
   private static final String ANY_NAME = "Pedro";
 
@@ -32,4 +33,11 @@ public class DeveloperProperties {
     assertTrue(developer.getNumberOfMaxibonsToGrab() >= 0);
   }
 
+  @Test public void theNumberOfMaxibonsAssociatedToEveryKarumieIsAlreadyAssigned() {
+    assertEquals(3, Karumies.PEDRO.getNumberOfMaxibonsToGrab());
+    assertEquals(0, Karumies.DAVIDE.getNumberOfMaxibonsToGrab());
+    assertEquals(1, Karumies.ALBERTO.getNumberOfMaxibonsToGrab());
+    assertEquals(2, Karumies.SERGIO.getNumberOfMaxibonsToGrab());
+    assertEquals(1, Karumies.JORGE.getNumberOfMaxibonsToGrab());
+  }
 }

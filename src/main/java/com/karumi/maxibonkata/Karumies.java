@@ -16,24 +16,12 @@
 
 package com.karumi.maxibonkata;
 
-class Developer {
+public class Karumies {
 
-  private final String name;
-  private final int numberOfMaxibonsToGrab;
+  public static final Developer PEDRO = new Developer("Pedro", 3);
+  public static final Developer ALBERTO = new Developer("Alberto", 1);
+  public static final Developer DAVIDE = new Developer("Davide", 0);
+  public static final Developer SERGIO = new Developer("Sergio", 2);
+  public static final Developer JORGE = new Developer("Jorge", 1);
 
-  Developer(String name, int numberOfMaxibonsToGrab) {
-    if (numberOfMaxibonsToGrab < 0) {
-      numberOfMaxibonsToGrab = 0;
-    }
-    this.name = name;
-    this.numberOfMaxibonsToGrab = numberOfMaxibonsToGrab;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public int getNumberOfMaxibonsToGrab() {
-    return numberOfMaxibonsToGrab;
-  }
 }
