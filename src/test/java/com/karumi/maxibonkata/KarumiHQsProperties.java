@@ -16,10 +16,32 @@
 
 package com.karumi.maxibonkata;
 
+import com.pholser.junit.quickcheck.From;
+import com.pholser.junit.quickcheck.Property;
 import com.pholser.junit.quickcheck.runner.JUnitQuickcheck;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
+
 @RunWith(JUnitQuickcheck.class) public class KarumiHQsProperties {
-  
+
+  private KarumiHQs karumiHQs;
+
+  @Before public void setUp() {
+    karumiHQs = new KarumiHQs();
+  }
+
+  @Test public void theNumberOfInitialMaxibonsAreTen() {
+    assertEquals(10, karumiHQs.getMaxibonsLeft());
+  }
+
+  @Property public void theNumberOfMaxibonsCanNeverBeLowerThanTwo(@From(DevelopersGenerator.class) Developer developer) {
+    karumiHQs.openFridge(developer);
+
+    assertTrue(karumiHQs.getMaxibonsLeft() > 2);
+  }
 }
 

@@ -16,31 +16,25 @@
 
 package com.karumi.maxibonkata;
 
-class Developer {
+public class KarumiHQs {
 
-  private final String name;
-  private final int numberOfMaxibonsToGrab;
+  private int maxibonsLeft;
 
-  Developer(String name, int numberOfMaxibonsToGrab) {
-    if (numberOfMaxibonsToGrab < 0) {
-      numberOfMaxibonsToGrab = 0;
+  public KarumiHQs() {
+    this.maxibonsLeft = 10;
+  }
+
+  public void openFridge(Developer developer) {
+    maxibonsLeft -= developer.getNumberOfMaxibonsToGrab();
+    if (maxibonsLeft < 0) {
+      maxibonsLeft = 0;
     }
-    this.name = name;
-    this.numberOfMaxibonsToGrab = numberOfMaxibonsToGrab;
+    if (maxibonsLeft < 2) {
+      maxibonsLeft += 10;
+    }
   }
 
-  public String getName() {
-    return name;
-  }
-
-  public int getNumberOfMaxibonsToGrab() {
-    return numberOfMaxibonsToGrab;
-  }
-
-  @Override public String toString() {
-    return "Developer{" +
-        "name='" + name + '\'' +
-        ", numberOfMaxibonsToGrab=" + numberOfMaxibonsToGrab +
-        '}';
+  public int getMaxibonsLeft() {
+    return maxibonsLeft;
   }
 }
