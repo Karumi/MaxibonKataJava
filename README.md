@@ -2,7 +2,7 @@
 ==================================================
 
 - We are here to practice [property based testing][property-based-testing].
-- We are going to use [SwitchCheck][swiftCheck] to write our tests.
+- We are going to use [JUnit-QuickCheck][[junit-quickcheck]] to write our tests.
 - We are going to practice pair programming.
 
 During this kata we will try to find how to use property based testing from different points of view:
@@ -66,6 +66,6 @@ limitations under the License.
 
 [karumilogo]: https://cloud.githubusercontent.com/assets/858090/11626547/e5a1dc66-9ce3-11e5-908d-537e07e82090.png
 [property-based-testing]: http://es.slideshare.net/ScottWlaschin/an-introduction-to-property-based-testing
-[swiftCheck]: https://github.com/typelift/SwiftCheck
+[junit-quickcheck]: http://pholser.github.io/junit-quickcheck/site/0.6/
 [maxibon]: ./art/maxibon.jpg
 [tdd]: https://en.wikipedia.org/wiki/Test-driven_development
