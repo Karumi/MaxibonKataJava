@@ -42,7 +42,7 @@ public class KarumiHQs {
     for (Developer developer : developers) {
       grabMaxibons(developer);
       if (shouldBuyMoreMaxibons()) {
-        notifyWeShouldByMaxibon(developer);
+        notifyWeShouldBuyMaxibon(developer);
         buyMaxibons();
       }
     }
@@ -59,7 +59,7 @@ public class KarumiHQs {
     return maxibonsLeft <= 2;
   }
 
-  private void notifyWeShouldByMaxibon(Developer developer) {
+  private void notifyWeShouldBuyMaxibon(Developer developer) {
     chat.sendMessage("Hi guys, I'm " + developer.getName() + ". We need more maxibons!");
   }
 

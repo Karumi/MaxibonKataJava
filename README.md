@@ -1,4 +1,4 @@
-![Karumi logo][karumilogo] Kata Maxibon for Swift.
+![Karumi logo][karumilogo] Kata Maxibon for Java.
 ==================================================
 
 - We are here to practice [property based testing][property-based-testing].
