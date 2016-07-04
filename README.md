@@ -1,4 +1,4 @@
-![Karumi logo][karumilogo] Kata Maxibon for Java.
+![Karumi logo][karumilogo] Kata Maxibon for Java. [![Build Status](https://travis-ci.org/Karumi/MaxibonKataJava.svg?branch=master)](https://travis-ci.org/Karumi/MaxibonKataJava)
 ==================================================
 
 - We are here to practice [property based testing][property-based-testing].
@@ -36,7 +36,7 @@ When a Karumi engineer goes to the kitchen, they can go in group if needed, and 
 Your task as iOS Developer is to resolve this problem or test an already implemented software, depending on the path you have choosen before to start.
 
 * If you want to practice TDD write a little piece of software to implement the already described scenario following the TDD cycle.
-* If you don not want to follow the TDD path create an empty project, add [Swift Check][swiftCheck] as a dependency and start writing code. 
+* If you don not want to follow the TDD path create an empty project, add [JUnit-QuickCheck][junit-quickcheck] as a dependency and start writing code. 
 * If you prefer to just learn how to use [property based testing][property-based-testing] you can use this repository just checkout to the branch ``write-tests``.
 
 ## Extra tasks:
@@ -56,7 +56,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-  http://www.apache.org/licenses/LICENSE-2.0
+http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
