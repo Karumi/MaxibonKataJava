@@ -2,13 +2,27 @@ group 'MaxibonsKataJava'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'checkstyle'
 
-sourceCompatibility = 1.5
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.21'
+    testCompile group: 'com.pholser', name: 'junit-quickcheck-core', version: '0.6'
+    testCompile group: 'com.pholser', name: 'junit-quickcheck-generators', version: '0.6'
+    testCompile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
+    testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
+}
+
+task checkstyle(type: Checkstyle) {
+    configFile file("${project.rootDir}/config/checkstyle/checkstyle.xml")
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+
+    classpath = files()
 }
