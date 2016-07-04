@@ -2,7 +2,7 @@
 ==================================================
 
 - We are here to practice [property based testing][property-based-testing].
-- We are going to use [JUnit-QuickCheck][[junit-quickcheck]] to write our tests.
+- We are going to use [JUnit-QuickCheck][[junit-quickcheck] to write our tests.
 - We are going to practice pair programming.
 
 During this kata we will try to find how to use property based testing from different points of view:
