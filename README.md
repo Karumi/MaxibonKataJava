@@ -1,4 +1,4 @@
-![Karumi logo][karumilogo] Kata Maxibon for Java.
+![Karumi logo][karumilogo] Kata Maxibon for Java. [![Build Status](https://travis-ci.org/Karumi/MaxibonKataJava.svg?branch=master)](https://travis-ci.org/Karumi/MaxibonKataJava)
 ==================================================
 
 - We are here to practice [property based testing][property-based-testing].
