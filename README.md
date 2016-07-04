@@ -36,7 +36,7 @@ When a Karumi engineer goes to the kitchen, they can go in group if needed, and 
 Your task as iOS Developer is to resolve this problem or test an already implemented software, depending on the path you have choosen before to start.
 
 * If you want to practice TDD write a little piece of software to implement the already described scenario following the TDD cycle.
-* If you don not want to follow the TDD path create an empty project, add [Swift Check][swiftCheck] as a dependency and start writing code. 
+* If you don not want to follow the TDD path create an empty project, add [JUnit-QuickCheck][junit-quickcheck] as a dependency and start writing code. 
 * If you prefer to just learn how to use [property based testing][property-based-testing] you can use this repository just checkout to the branch ``write-tests``.
 
 ## Extra tasks:
