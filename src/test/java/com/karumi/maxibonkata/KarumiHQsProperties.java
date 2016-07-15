@@ -51,7 +51,7 @@ import static org.mockito.Mockito.verify;
     assertTrue(karumiHQs.getMaxibonsLeft() > 2);
   }
 
-  @Property public void ifThereAreLessThanTwoMaxiobonLeft10MaxibonsAreAutomaticallyBought(
+  @Property public void ifThereAreLessThanTwoMaxibonLeft10MaxibonsAreAutomaticallyBought(
       @From(HungryDevelopersGenerator.class) Developer developer) {
     int initialMaxibons = karumiHQs.getMaxibonsLeft();
     karumiHQs.openFridge(developer);
@@ -61,14 +61,14 @@ import static org.mockito.Mockito.verify;
     assertEquals(expectedMaxibons, karumiHQs.getMaxibonsLeft());
   }
 
-  @Property public void ifThereAreLessThanTwoMaxiobonsLeftAMessageIsSentRequestingMore(
+  @Property public void ifThereAreLessThanTwoMaxibonsLeftAMessageIsSentRequestingMore(
       @From(HungryDevelopersGenerator.class) Developer developer) {
     karumiHQs.openFridge(developer);
 
     verify(chat).sendMessage("Hi guys, I'm " + developer.getName() + ". We need more maxibons!");
   }
 
-  @Property public void ifThereAreMoreThanTwoMaxiobonsLeftNoMessagesAreSentOrderingMore(
+  @Property public void ifThereAreMoreThanTwoMaxibonsLeftNoMessagesAreSentOrderingMore(
       @From(NotSoHungryDevelopersGenerator.class) Developer developer) {
     karumiHQs.openFridge(developer);
 
